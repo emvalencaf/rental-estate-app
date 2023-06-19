@@ -1,13 +1,20 @@
 "use client";
 
+// next tools
+import dynamic from "next/dynamic";
+
 // hooks
 import { useMemo, useState } from "react";
+
+// hoook form
+import { FieldValues, useForm } from "react-hook-form";
 
 // custom hooks
 import { useRentModal } from "../../../hooks";
 
 // custom components
-import Heading from "../../Heading";
+import { CategoryInput, CountrySelect, Heading } from "../..";
+
 
 // custom modals
 import { Modal } from "..";
@@ -17,8 +24,6 @@ import { categories } from "../../../constants";
 
 // enums
 import { STEPS } from "../../../enums";
-import { CategoryInput } from "../..";
-import { FieldValues, useForm } from "react-hook-form";
 
 const RentModal: React.FC = () => {
     
@@ -53,6 +58,11 @@ const RentModal: React.FC = () => {
     });
 
     const category = watch('category');
+    const location = watch('location');
+
+    const Map = useMemo(() => dynamic(() => import("../../../components/Map"), {
+        ssr: false,
+    }), [location]);
 
     const setCustomValue = (id: string, value: any) => {
         setValue(id, value, {
@@ -108,6 +118,24 @@ const RentModal: React.FC = () => {
                     ))
                 }
             </div>
+        </div>
+    );
+
+    if (step === STEPS.LOCATION) bodyContent = (
+        <div
+            className="flex flex-col gap-8"
+        >
+            <Heading
+                title="Where is your place located?"
+                subtitle="Help guests find you!"
+            />
+            <CountrySelect
+                onChange={(value) => setCustomValue('location', value)}
+                value={location}
+            />
+            <Map
+                center={location?.latlng}
+            />
         </div>
     )
 
