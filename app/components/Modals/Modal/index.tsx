@@ -83,7 +83,6 @@ const Modal: React.FC<ModalProps> = ({
                 outline-none 
                 focus:outline-none
                 bg-neutral-800/70
-
                 "
             >
                 <div
@@ -118,23 +117,23 @@ const Modal: React.FC<ModalProps> = ({
                             h-full
                             lg:h-auto
                             md:h-auto
-                            border-0
-                            rounded-lg
-                            shadow-lg
-                            relative
-                            flex
-                            flex-col
-                            w-full
-                            bg-white
-                            outline-none
-                            focus:outline-one
+                            border-0 
+                            rounded-lg 
+                            shadow-lg 
+                            relative 
+                            flex 
+                            flex-col 
+                            w-full 
+                            bg-white 
+                            outline-none 
+                            focus:outline-none
                             "
                         >
                             {/* HEADER */}
                             <div
                                 className="
-                                flex
-                                items-center
+                                flex 
+                                items-center 
                                 p-6
                                 rounded-t
                                 justify-center
@@ -146,7 +145,7 @@ const Modal: React.FC<ModalProps> = ({
                                     onClick={onClose}
                                     className="
                                     p-1
-                                    border-0
+                                    border-0 
                                     hover:opacity-70
                                     transition
                                     absolute

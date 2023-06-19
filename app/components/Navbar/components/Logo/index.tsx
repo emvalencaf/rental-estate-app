@@ -7,8 +7,12 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const Logo: React.FC = () => {
+    // navigator controller
+    const router = useRouter();
+    
     return (
         <Image
+            onClick={() => router.push('/')}
             alt="Logo"
             className="
             hidden

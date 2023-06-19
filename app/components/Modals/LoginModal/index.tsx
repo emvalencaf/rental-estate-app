@@ -19,7 +19,6 @@ import { AuthSocial } from '../components';
 import { Modal } from '..';
 
 // utils
-import axios from 'axios';
 import {
     FieldValues,
     SubmitHandler,
@@ -61,6 +60,11 @@ const LoginModal: React.FC = ({
             password: '',
         },
     });
+
+    const toogle = useCallback(() => {
+        loginModal.onClose();
+        registerModal.onOpen();
+    }, [registerModal, loginModal]);
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
@@ -133,9 +137,10 @@ const LoginModal: React.FC = ({
                     className='justify-center flex flex-row items-center gap-2'
                 >
                     <div>
-                        Don&apos;t have an account?
+                        First time using Airbnb?
                     </div>
                     <div
+                        onClick={toogle}
                         className='
                         text-neutral-800
                         cursor-pointer

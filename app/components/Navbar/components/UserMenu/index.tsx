@@ -7,7 +7,7 @@ import { signOut } from  'next-auth/react';
 import { useCallback, useState } from 'react';
 
 // custom hooks
-import { useLoginModal, useRegisterModal } from '../../../../hooks';
+import { useLoginModal, useRegisterModal, useRentModal } from '../../../../hooks';
 
 // custom components
 import { Avatar } from '../../..';
@@ -34,12 +34,25 @@ const UserMenu: React.FC<UserMenuProps> = ({
     // login modal controller
     const loginModal = useLoginModal();
 
+    // rent modal controller
+    const rentModal = useRentModal();
+
     // modal states
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleOpen = useCallback(() => {
         setIsOpen((value) => !value);
     }, []);
+
+    const onRent = useCallback(() => {
+        
+        if (!currentUser) return loginModal.onOpen();
+
+        console.log('rent modal');
+
+        rentModal.onOpen();
+        
+    }, [currentUser, loginModal, rentModal]);
 
     return (
         <div className="relative">
@@ -52,7 +65,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                 "
             >
                 <div
-                    onClick={() => { }}
+                    onClick={onRent}
                     className="
                     hidden
                     md:block
@@ -137,7 +150,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                         label="My properties"
                                     />
                                     <MenuItem
-                                        onClick={() => {}}
+                                        onClick={rentModal.onOpen}
                                         label="Airbnb my home"
                                     />
                                     <hr />

@@ -4,7 +4,7 @@
 import { useCallback, useState } from 'react';
 
 // custom hooks
-import { useRegisterModal } from '../../../hooks';
+import { useLoginModal, useRegisterModal } from '../../../hooks';
 
 // custom components
 import { CustomInput, Heading } from '../..';
@@ -32,8 +32,11 @@ const RegisterModal: React.FC = ({
 
 }) => {
 
-    // modal controller
+    // modal register controller
     const registerModal = useRegisterModal();
+    
+    // modal login controller
+    const loginModal = useLoginModal();
 
     // states modal
     const [isLoading, setIsLoading] = useState(false);
@@ -52,6 +55,12 @@ const RegisterModal: React.FC = ({
             password: '',
         },
     });
+
+
+    const toogle = useCallback(() => {
+        registerModal.onClose();
+        loginModal.onOpen();
+    }, [registerModal, loginModal]);
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
@@ -129,6 +138,7 @@ const RegisterModal: React.FC = ({
                         Already have an account?
                     </div>
                     <div
+                        onClick={toogle}
                         className='
                         text-neutral-800
                         cursor-pointer
