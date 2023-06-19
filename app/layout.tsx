@@ -1,8 +1,11 @@
+// custom actions
+import { getCurrentUser } from './actions';
+
 // custom components
 import { Navbar, ClientOnly } from './components';
 
 // custom modals
-import { Modal, RegisterModal } from './components/Modals';
+import { LoginModal, Modal, RegisterModal } from './components/Modals';
 
 // next fonts
 import { Nunito } from 'next/font/google';
@@ -22,11 +25,15 @@ const font = Nunito({
   subsets: ['latin'],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  // get current user
+  const currentUser = await getCurrentUser();
+
+
   return (
     <html lang="en">
       <body
@@ -34,8 +41,9 @@ export default function RootLayout({
       >
         <ClientOnly>
           <ToasterProvider />
+          <LoginModal />
           <RegisterModal />
-          <Navbar />
+          <Navbar currentUser={currentUser} />
         </ClientOnly>
         {children}
       </body>

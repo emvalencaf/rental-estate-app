@@ -1,10 +1,13 @@
 "use client";
 
+// nextauth tools
+import { signIn } from 'next-auth/react';
+
 // hooks
 import { useCallback, useState } from 'react';
 
 // custom hooks
-import { useRegisterModal } from '../../../hooks';
+import { useLoginModal, useRegisterModal } from '../../../hooks';
 
 // custom components
 import { CustomButton, CustomInput, Heading } from '../..';
@@ -22,15 +25,22 @@ import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { Modal } from '..';
 import { toast } from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 
 
-const RegisterModal: React.FC = ({
+const LoginModal: React.FC = ({
 
 }) => {
 
-    // modal controller
+    // navigation controller
+    const router = useRouter();
+
+    // regiter modal controller
     const registerModal = useRegisterModal();
+
+    // login modal controller
+    const loginModal = useLoginModal();
 
     // states modal
     const [isLoading, setIsLoading] = useState(false);
@@ -44,7 +54,6 @@ const RegisterModal: React.FC = ({
         }
     } = useForm<FieldValues>({
         defaultValues: {
-            name: '',
             email: '',
             password: '',
         },
@@ -53,17 +62,24 @@ const RegisterModal: React.FC = ({
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
 
-        axios.post('/api/register', data)
-            .then(() => {
-                registerModal.onClose();
-            })
-            .catch((error: any) => {
-                console.log(error);
-                toast.error('Something went wrong!');
-            })
-            .finally(() => {
+        signIn('credentials', {
+            ...data,
+            redirect: false,
+        })
+            .then((callback) => {
                 setIsLoading(false);
+
+                if (callback?.ok) {
+                    toast.success('Logged in');
+                    loginModal.onClose();
+                    router.refresh();
+                }
+            
+                if (callback?.error) {
+                    toast.error(callback.error);
+                }
             });
+
     }
 
 
@@ -72,21 +88,12 @@ const RegisterModal: React.FC = ({
             className='flex flex-col gap-4'
         >
             <Heading
-                title="Welcome to Airbnb"
-                subtitle='Create an account'
+                title="Welcome back"
+                subtitle='Login to your account'
             />
             <CustomInput
                 id="email"
                 label="Email"
-                disabled={isLoading}
-                register={register}
-                type='email'
-                errors={errors}
-                required
-            />
-            <CustomInput
-                id="name"
-                label="Name"
                 disabled={isLoading}
                 register={register}
                 errors={errors}
@@ -130,7 +137,7 @@ const RegisterModal: React.FC = ({
                 '
             >
                 <div
-                    onClick={registerModal.onClose}
+                    onClick={loginModal.onClose}
                     className='justify-center flex flex-row items-center gap-2'
                 >
                     <div>
@@ -153,10 +160,10 @@ const RegisterModal: React.FC = ({
     return (
         <Modal
             disabled={isLoading}
-            isOpen={registerModal.isOpen}
-            title="Register"
+            isOpen={loginModal.isOpen}
+            title="Login"
             actionLabel='Continue'
-            onClose={registerModal.onClose}
+            onClose={loginModal.onClose}
             onSubmit={handleSubmit(onSubmit)}
             body={bodyContent}
             footer={footerContent}
@@ -164,4 +171,4 @@ const RegisterModal: React.FC = ({
     )
 }
 
-export default RegisterModal;
+export default LoginModal;

@@ -2,16 +2,22 @@
 
 // custom components
 import { Container } from "..";
+
 // internal custom components
 import { Search, Logo, UserMenu } from "./components";
 
 
 // interfaces
-export interface NavbarProps {
+import { User } from "@prisma/client";
 
+export interface NavbarProps {
+    currentUser?: User;
 }
 
-const Navbar = () => {
+const Navbar: React.FC<NavbarProps> = ({
+    currentUser,
+}) => {
+
     return (
         <div
             className="
@@ -41,7 +47,9 @@ const Navbar = () => {
                     >
                         <Logo />
                         <Search />
-                        <UserMenu />
+                        <UserMenu
+                            currentUser={currentUser}
+                        />
                     </div>
                 </Container>
             </div>
