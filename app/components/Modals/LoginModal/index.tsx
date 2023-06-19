@@ -12,7 +12,7 @@ import { useLoginModal, useRegisterModal } from '../../../hooks';
 // custom components
 import { CustomInput, Heading } from '../..';
 
-// internal custom components
+// internal modal custom components
 import { AuthSocial } from '../components';
 
 // custom modals

@@ -3,7 +3,7 @@
 // icons
 import { BiSearch } from 'react-icons/bi';
 
-const Search = () => {
+const Search: React.FC = () => {
     return (
         <div
             className="

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 // next components
 import Image from "next/image";
 
-const Logo = () => {
+const Logo: React.FC = () => {
     return (
         <Image
             alt="Logo"

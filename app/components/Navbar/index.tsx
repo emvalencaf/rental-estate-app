@@ -3,9 +3,8 @@
 // custom components
 import { Container } from "..";
 
-// internal custom components
-import { Search, Logo, UserMenu } from "./components";
-
+// internal navbar custom components
+import { Search, Logo, UserMenu, Categories } from "./components";
 
 // interfaces
 import { SafeUser } from "../../types/SafeUser";
@@ -53,6 +52,7 @@ const Navbar: React.FC<NavbarProps> = ({
                     </div>
                 </Container>
             </div>
+            <Categories />
         </div>
     );
 }
