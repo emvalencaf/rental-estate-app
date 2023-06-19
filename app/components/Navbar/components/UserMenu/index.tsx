@@ -19,10 +19,10 @@ import { MenuItem } from '..';
 import { AiOutlineMenu } from 'react-icons/ai';
 
 // interfaces
-import { User } from 'prisma/prisma-client';
+import { SafeUser } from '../../../../types/SafeUser';
 
 export interface UserMenuProps {
-    currentUser?: User;
+    currentUser?: SafeUser | null;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({
@@ -89,7 +89,9 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     <div
                         className='hidden md:block'
                     >
-                        <Avatar />
+                        <Avatar
+                            src={currentUser?.image || ''}
+                        />
                     </div>
                 </div>
             </div>

@@ -7,7 +7,13 @@ import { useCallback, useState } from 'react';
 import { useRegisterModal } from '../../../hooks';
 
 // custom components
-import { CustomButton, CustomInput, Heading } from '../..';
+import { CustomInput, Heading } from '../..';
+
+// internal custom components
+import { AuthSocial } from '../components';
+
+// modals
+import { Modal } from '..';
 
 // utils
 import axios from 'axios';
@@ -18,9 +24,6 @@ import {
 } from 'react-hook-form';
 
 // icons
-import { AiFillGithub } from 'react-icons/ai';
-import { FcGoogle } from 'react-icons/fc';
-import { Modal } from '..';
 import { toast } from 'react-hot-toast';
 
 
@@ -109,18 +112,7 @@ const RegisterModal: React.FC = ({
             className='flex flex-col gap-4 mt-3'
         >
             <hr />
-            <CustomButton
-                outline
-                label="Continue with Google"
-                icon={FcGoogle}
-                onClick={() => { }}
-            />
-            <CustomButton
-                outline
-                label="Continue with Github"
-                icon={AiFillGithub}
-                onClick={() => { }}
-            />
+            <AuthSocial />
             <div
                 className='
                 text-neutral-500

@@ -10,7 +10,13 @@ import { useCallback, useState } from 'react';
 import { useLoginModal, useRegisterModal } from '../../../hooks';
 
 // custom components
-import { CustomButton, CustomInput, Heading } from '../..';
+import { CustomInput, Heading } from '../..';
+
+// internal custom components
+import { AuthSocial } from '../components';
+
+// custom modals
+import { Modal } from '..';
 
 // utils
 import axios from 'axios';
@@ -21,9 +27,6 @@ import {
 } from 'react-hook-form';
 
 // icons
-import { AiFillGithub } from 'react-icons/ai';
-import { FcGoogle } from 'react-icons/fc';
-import { Modal } from '..';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 
@@ -116,18 +119,7 @@ const LoginModal: React.FC = ({
             className='flex flex-col gap-4 mt-3'
         >
             <hr />
-            <CustomButton
-                outline
-                label="Continue with Google"
-                icon={FcGoogle}
-                onClick={() => { }}
-            />
-            <CustomButton
-                outline
-                label="Continue with Github"
-                icon={AiFillGithub}
-                onClick={() => { }}
-            />
+            <AuthSocial />
             <div
                 className='
                 text-neutral-500
@@ -141,7 +133,7 @@ const LoginModal: React.FC = ({
                     className='justify-center flex flex-row items-center gap-2'
                 >
                     <div>
-                        Already have an account?
+                        Don&apos;t have an account?
                     </div>
                     <div
                         className='
@@ -150,7 +142,7 @@ const LoginModal: React.FC = ({
                         hover:underliine
                         '
                     >
-                        Log in
+                        Register
                     </div>
                 </div>
             </div>
