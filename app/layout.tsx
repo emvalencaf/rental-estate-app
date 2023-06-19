@@ -1,11 +1,15 @@
 // custom components
-import { Navbar } from './components';
+import { Navbar, ClientOnly } from './components';
+
+// custom modals
+import { Modal, RegisterModal } from './components/Modals';
 
 // next fonts
 import { Nunito } from 'next/font/google';
 
 // styles
 import './globals.css'
+import { ToasterProvider } from './providers';
 
 // metadata infos
 export const metadata = {
@@ -28,7 +32,11 @@ export default function RootLayout({
       <body
         className={font.className}
       >
-        <Navbar />
+        <ClientOnly>
+          <ToasterProvider />
+          <RegisterModal />
+          <Navbar />
+        </ClientOnly>
         {children}
       </body>
     </html>

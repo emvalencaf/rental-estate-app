@@ -3,6 +3,9 @@
 // hooks
 import { useCallback, useState } from 'react';
 
+// custom hooks
+import { useRegisterModal } from '../../../../hooks';
+
 // custom components
 import { Avatar } from '../../..';
 
@@ -13,8 +16,13 @@ import { MenuItem } from '..';
 import { AiOutlineMenu } from 'react-icons/ai';
 
 const UserMenu = () => {
+    // register modal controller
+    const registerModal = useRegisterModal();
+
     // modal states
     const [isOpen, setIsOpen] = useState(false);
+
+    console.log(registerModal);
 
     const toggleOpen = useCallback(() => {
         setIsOpen((value) => !value);
@@ -100,7 +108,7 @@ const UserMenu = () => {
                                 label="Login"
                             />
                             <MenuItem
-                                onClick={() => { }}
+                                onClick={() => registerModal.onOpen()}
                                 label="Sign up"
                             />
                         </>
