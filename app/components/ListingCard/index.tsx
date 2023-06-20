@@ -7,20 +7,24 @@ import { useCallback, useMemo } from "react";
 // custom hooks
 import { useCountries } from "../../hooks";
 
+// components
+import Image from "next/image";
+
+// custom components
+import { CustomButton, HeartButton } from "..";
+
 // utils
 import { format, } from "date-fns";
 
 // interfaces
-import { Reservation } from "@prisma/client";
 import { SafeUser } from "../../types/SafeUser";
-import Image from "next/image";
-import { CustomButton, HeartButton } from "..";
 import { SafeListing } from "../../types/SafeListing";
+import { SafeReservation } from "../../types/SafeReservation";
 
 export interface ListingCardProps {
     currentUser?: SafeUser | null;
     data: SafeListing;
-    reservation?: Reservation;
+    reservation?: SafeReservation;
     disabled?: boolean;
     onAction?: (id: string) => void;
     actionLabel?: string;

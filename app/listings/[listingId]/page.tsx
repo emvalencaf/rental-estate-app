@@ -1,5 +1,5 @@
 // actions
-import { getCurrentUser, getListingById } from "../../actions";
+import { getCurrentUser, getListingById, getReservations } from "../../actions";
 
 // custom components
 import { ClientOnly, EmpetyState } from "../../components";
@@ -18,6 +18,7 @@ const ListingPage = async ({
 }: { params: IParams }) => {
 
     const listing = await getListingById(params);
+    const reservations = await getReservations(params);
     const currentUser = await getCurrentUser();
 
     if (!listing) return (
@@ -31,6 +32,7 @@ const ListingPage = async ({
             <ListingClient
                 listing={listing}
                 currentUser={currentUser}
+                reservations={reservations}
             />
         </ClientOnly>
     );

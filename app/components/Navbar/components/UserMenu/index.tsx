@@ -5,6 +5,7 @@ import { signOut } from  'next-auth/react';
 
 // hooks
 import { useCallback, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 // custom hooks
 import { useLoginModal, useRegisterModal, useRentModal } from '../../../../hooks';
@@ -28,6 +29,9 @@ export interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({
     currentUser,
 }) => {
+    // navigation controller
+    const router = useRouter();
+
     // register modal controller
     const registerModal = useRegisterModal();
 
@@ -134,7 +138,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                             currentUser ? (
                                 <>
                                     <MenuItem
-                                        onClick={() => {}}
+                                        onClick={() => router.push('/trips')}
                                         label="My trips"
                                     />
                                     <MenuItem

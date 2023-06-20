@@ -2,7 +2,7 @@
 
 // interfaces
 import { Range } from 'react-date-range';
-import { Calendar, CustomButton } from '../../../../components';
+import { Calendar, CustomButton } from '../..';
 
 export interface ListingReservationProps {
     price: number;

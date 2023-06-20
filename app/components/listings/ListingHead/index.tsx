@@ -1,16 +1,16 @@
 "use client";
 
 // custom hooks
-import { useCountries } from "../../../../hooks";
+import { useCountries } from "../../../hooks";
 
 // components
 import Image from "next/image";
 
 // custom components
-import { Heading, HeartButton } from "../../../../components";
+import { Heading, HeartButton } from "../..";
 
 // interfaces
-import { SafeUser } from "../../../../types/SafeUser";
+import { SafeUser } from "../../../types/SafeUser";
 
 export interface ListingHeadProps {
     title: string;

@@ -1,22 +1,22 @@
 'use client';
 
 // custom hooks
-import { useCountries } from "../../../../hooks";
+import { useCountries } from "../../../hooks";
 
 // custom components
-import { Avatar } from "../../../../components";
+import { Avatar } from "../..";
 
 // custom listing components
-import { ListingCategory } from "..";
+import { ListingCategory } from "../";
 
 // Map
-const Map = dynamic(() => import('../../../../components/Map'), {
+const Map = dynamic(() => import('../../Map'), {
     ssr: false,
 });
 
 // interface
 import { IconType } from "react-icons";
-import { SafeUser } from "../../../../types/SafeUser";
+import { SafeUser } from "../../../types/SafeUser";
 import dynamic from "next/dynamic";
 
 export interface ListingInfoProps {

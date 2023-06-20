@@ -13,8 +13,8 @@ import { categories } from "../../../../constants";
 // custom components
 import { Container } from "../../../../components";
 
-// custom listing page components
-import { ListingHead, ListingInfo, ListingReservation } from "..";
+// custom listing components
+import { ListingHead, ListingInfo, ListingReservation } from "../../../../components/listings";
 
 // utils
 import axios from "axios";
@@ -33,9 +33,10 @@ import { Reservation } from "@prisma/client";
 import { SafeListing } from "../../../../types/SafeListing";
 import { SafeUser } from "../../../../types/SafeUser";
 import { Range } from "react-date-range";
+import { SafeReservation } from "../../../../types/SafeReservation";
 
 export interface ListingClientProps {
-    reservations?: Reservation[];
+    reservations?: SafeReservation[];
     listing: SafeListing & {
         user: SafeUser;
     };
@@ -87,8 +88,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
         })
             .then(() => {
                 toast.success('Listing reserved!');
-                // REDIRECT TO /TRIPS
-                router.refresh();
+                setDateRange(initialDateRange);
+                router.push('/tirps');
             })
             .catch(() => {
                 toast.error('Something went wrong!');
