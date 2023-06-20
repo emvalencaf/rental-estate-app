@@ -5,7 +5,7 @@ import { getListings, getCurrentUser} from "./actions";
 import { ClientOnly, Container, EmpetyState, ListingCard } from "./components";
 
 // interfaces
-import { Listing } from "@prisma/client";
+import { SafeListing } from "./types/SafeListing";
 
 export default async function Home() {
   
@@ -38,7 +38,7 @@ export default async function Home() {
           "
         >
           {
-            listings.map((listing: Listing) => (
+            listings.map((listing: SafeListing) => (
               <ListingCard
                 currentUser={currentUser}
                 key={listing.id}

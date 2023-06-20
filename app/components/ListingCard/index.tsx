@@ -11,14 +11,15 @@ import { useCountries } from "../../hooks";
 import { format, } from "date-fns";
 
 // interfaces
-import { Listing, Reservation } from "@prisma/client";
+import { Reservation } from "@prisma/client";
 import { SafeUser } from "../../types/SafeUser";
 import Image from "next/image";
 import { CustomButton, HeartButton } from "..";
+import { SafeListing } from "../../types/SafeListing";
 
 export interface ListingCardProps {
     currentUser?: SafeUser | null;
-    data: Listing;
+    data: SafeListing;
     reservation?: Reservation;
     disabled?: boolean;
     onAction?: (id: string) => void;
