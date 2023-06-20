@@ -8,5 +8,6 @@ export { default as CountrySelect } from './CountrySelect';
 export { default as CustomButton } from './CustomButton';
 export { default as Navbar } from './Navbar';
 export { default as Heading  } from './Heading';
+export { default as ImageUpload } from './ImageUpload';
 export { default as Map } from './Map';
 export { default as CustomInput } from './CustomInput';
