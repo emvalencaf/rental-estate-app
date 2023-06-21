@@ -13,7 +13,7 @@ import { useLoginModal, useRegisterModal } from '../../../hooks';
 import { CustomInput, Heading } from '../..';
 
 // internal modal custom components
-import { AuthSocial } from '../components';
+import { AuthSocial, DemoButton } from '../components';
 
 // custom modals
 import { Modal } from '..';
@@ -29,7 +29,8 @@ import {
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 
-
+// constants
+import { demoAccount } from '../../../constants';
 
 const LoginModal: React.FC = ({
 
@@ -89,6 +90,26 @@ const LoginModal: React.FC = ({
 
     }
 
+    const handleDemo = () => {
+        setIsLoading(true);
+        signIn('credentials', {
+            ...demoAccount,
+            redirect: false,
+        })
+            .then((callback) => {
+                setIsLoading(false);
+
+                if (callback?.ok) {
+                    toast.success('Logged in');
+                    loginModal.onClose();
+                    router.refresh();
+                }
+            
+                if (callback?.error) {
+                    toast.error(callback.error);
+                }
+            });
+    }
 
     const bodyContent = (
         <div
@@ -122,6 +143,10 @@ const LoginModal: React.FC = ({
         <div
             className='flex flex-col gap-4 mt-3'
         >
+            <hr />
+            <DemoButton
+                onDemo={handleDemo}
+            />
             <hr />
             <AuthSocial />
             <div

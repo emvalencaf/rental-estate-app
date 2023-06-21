@@ -26,6 +26,7 @@ const Calendar: React.FC<CalendarProps> = ({
             direction="vertical"
             showDateDisplay={false}
             disabledDates={disabledDates}
+            onChange={onChange}
         />
     );
 }

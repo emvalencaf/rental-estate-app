@@ -2,7 +2,7 @@
 import { getListings, getCurrentUser} from "./actions";
 
 // custom components
-import { ClientOnly, Container, EmpetyState, ListingCard } from "./components";
+import { ClientOnly, Container, EmptyState, ListingCard } from "./components";
 
 // interfaces
 import { IListingsParams } from "./actions/getListings";
@@ -22,7 +22,7 @@ const Home = async ({ searchParams }: HomeProps) =>  {
 
   if (!listings || listings.length === 0) return (
     <ClientOnly>
-      <EmpetyState showReset />
+      <EmptyState showReset />
     </ClientOnly>
   );
 

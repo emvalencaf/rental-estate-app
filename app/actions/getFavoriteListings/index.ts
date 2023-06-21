@@ -6,10 +6,11 @@ import prisma from '../../libs/prismadb';
 
 export default async function getFavoriteListings() {
     try {
-
         const currentUser = await getCurrentUser();
 
-        if (!currentUser) return [];
+        if (!currentUser) {
+            return [];
+        }
 
         const favorites = await prisma.listing.findMany({
             where: {
@@ -21,12 +22,11 @@ export default async function getFavoriteListings() {
 
         const safeFavorites = favorites.map((favorite) => ({
             ...favorite,
-            createdAt: favorite.createdAt.toISOString(),
+            createdAt: favorite.createdAt.toString(),
         }));
 
-
+        return safeFavorites;
     } catch (error: any) {
-        console.log(error);
         throw new Error(error);
     }
 }

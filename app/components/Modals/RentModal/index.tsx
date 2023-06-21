@@ -27,7 +27,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 // enums
-import { STEPS } from "../../../enums";
+import { CREATE_LISTING_STEPS } from "../../../enums";
 
 const RentModal: React.FC = () => {
 
@@ -38,7 +38,7 @@ const RentModal: React.FC = () => {
     const rentModal = useRentModal();
 
     // states
-    const [step, setStep] = useState(STEPS.CATEGORY);
+    const [step, setStep] = useState(CREATE_LISTING_STEPS.CATEGORY);
     const [isLoading, setIsLoading] = useState(false);
 
     // forms states
@@ -92,7 +92,7 @@ const RentModal: React.FC = () => {
     const onNext = () => setStep((value) => value + 1);
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        if (step !== STEPS.PRICE) return onNext();
+        if (step !== CREATE_LISTING_STEPS.PRICE) return onNext();
 
         setIsLoading(true);
 
@@ -101,7 +101,7 @@ const RentModal: React.FC = () => {
                 toast.success('Listing created!');
                 router.refresh();
                 reset();
-                setStep(STEPS.CATEGORY);
+                setStep(CREATE_LISTING_STEPS.CATEGORY);
                 rentModal.onClose();
             })
             .catch(() => {
@@ -112,13 +112,13 @@ const RentModal: React.FC = () => {
 
     // dynamic changing the button to navigate between steps
     const actionLabel = useMemo(() => {
-        if (step === STEPS.PRICE) return 'Create';
+        if (step === CREATE_LISTING_STEPS.PRICE) return 'Create';
 
         return 'Next';
     }, [step]);
 
     const secondaryActionLabel = useMemo(() => {
-        if (step === STEPS.CATEGORY) return undefined;
+        if (step === CREATE_LISTING_STEPS.CATEGORY) return undefined;
 
         return 'Back';
     }, [step]);
@@ -156,7 +156,7 @@ const RentModal: React.FC = () => {
     )
 
 
-    if (step === STEPS.LOCATION) bodyContent = (
+    if (step === CREATE_LISTING_STEPS.LOCATION) bodyContent = (
         <div className="flex flex-col gap-8">
             <Heading
                 title="Where is your place located?"
@@ -170,7 +170,7 @@ const RentModal: React.FC = () => {
         </div>
     );
 
-    if (step === STEPS.INFO) bodyContent = (
+    if (step === CREATE_LISTING_STEPS.INFO) bodyContent = (
         <div className="flex flex-col gap-8">
             <Heading
                 title="Share some basics about your place"
@@ -199,7 +199,7 @@ const RentModal: React.FC = () => {
         </div>
     );
 
-    if (step === STEPS.IMAGES) bodyContent = (
+    if (step === CREATE_LISTING_STEPS.IMAGES) bodyContent = (
         <div
             className="flex flex-col gap-8"
         >
@@ -214,7 +214,7 @@ const RentModal: React.FC = () => {
         </div>
     );
 
-    if (step === STEPS.DESCRIPTION) bodyContent = (
+    if (step === CREATE_LISTING_STEPS.DESCRIPTION) bodyContent = (
         <div
             className="flex flex-col gap-8"
         >
@@ -242,7 +242,7 @@ const RentModal: React.FC = () => {
         </div>
     );
 
-    if (step === STEPS.PRICE) bodyContent = (
+    if (step === CREATE_LISTING_STEPS.PRICE) bodyContent = (
         <div
             className="flex flex-col gap-8"
         >
@@ -271,7 +271,7 @@ const RentModal: React.FC = () => {
             onSubmit={handleSubmit(onSubmit)}
             actionLabel={actionLabel}
             secondaryActionLabel={secondaryActionLabel}
-            secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
+            secondaryAction={step === CREATE_LISTING_STEPS.CATEGORY ? undefined : onBack}
             title="Airbnb your home!"
             body={bodyContent}
         />

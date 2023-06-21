@@ -2,7 +2,7 @@
 import { getCurrentUser, getListingById, getReservations } from "../../actions";
 
 // custom components
-import { ClientOnly, EmpetyState } from "../../components";
+import { ClientOnly, EmptyState } from "../../components";
 
 // custom listingId page components
 import { ListingClient } from "./components";
@@ -23,7 +23,7 @@ const ListingPage = async ({
 
     if (!listing) return (
         <ClientOnly>
-            <EmpetyState />
+            <EmptyState />
         </ClientOnly>
     )
 

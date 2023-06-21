@@ -2,16 +2,16 @@
 
 // hooks
 import { useRouter } from "next/navigation";
-import { CustomButton, Heading } from "../";
+import { CustomButton, Heading } from "..";
 
 // interfaces
-export interface EmpetyStateProps {
+export interface EmptyStateProps {
     title?: string;
     subtitle?: string;
     showReset?: boolean;
 }
 
-const EmpetyState: React.FC<EmpetyStateProps> = ({
+const EmptyState: React.FC<EmptyStateProps> = ({
     title = "No exact matches",
     subtitle = "Try changing or removing some of your filters",
     showReset,
@@ -55,4 +55,4 @@ const EmpetyState: React.FC<EmpetyStateProps> = ({
     );
 }
 
-export default EmpetyState;
+export default EmptyState;

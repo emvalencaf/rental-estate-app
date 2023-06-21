@@ -5,7 +5,7 @@ import { getCurrentUser } from './actions';
 import { Navbar, ClientOnly } from './components';
 
 // custom modals
-import { LoginModal, RegisterModal, RentModal } from './components/Modals';
+import { LoginModal, RegisterModal, RentModal, SearchModal } from './components/Modals';
 
 // next fonts
 import { Nunito } from 'next/font/google';
@@ -44,6 +44,7 @@ export default async function RootLayout({
           <LoginModal />
           <RegisterModal />
           <RentModal />
+          <SearchModal />
           <Navbar currentUser={currentUser} />
         </ClientOnly>
         <div

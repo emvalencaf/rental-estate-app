@@ -3,7 +3,7 @@
 import { getCurrentUser, getReservations } from "../actions";
 
 // custom components
-import { ClientOnly, EmpetyState } from "../components";
+import { ClientOnly, EmptyState } from "../components";
 
 // custom reservations components
 import { ReservationClient } from "./components";
@@ -14,7 +14,7 @@ const ReservationPage = async () => {
 
     if (!currentUser) return (
         <ClientOnly>
-            <EmpetyState
+            <EmptyState
                 title="Unauthorized"
                 subtitle="Please login"
             />
@@ -27,7 +27,7 @@ const ReservationPage = async () => {
 
     if (reservations.length === 0) return (
         <ClientOnly>
-            <EmpetyState
+            <EmptyState
                 title="No reservations found"
                 subtitle="Looks like you have no reservations on your properties"
             />
