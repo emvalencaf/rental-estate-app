@@ -8,24 +8,14 @@ import { ClientOnly, Container, EmptyState, ListingCard } from "./components";
 import { IListingsParams } from "./actions/getListings";
 import { SafeListing } from "./types/SafeListing";
 
+const dynamic = 'force-dynamic';
+
 interface HomeProps {
   searchParams: IListingsParams;
 }
 
 const Home = async ({ searchParams }: HomeProps) => {
 
-  searchParams = searchParams ?
-    searchParams
-    : {
-      userId: undefined,
-      guestCount: undefined,
-      roomCount: undefined,
-      bathroomCount: undefined,
-      startDate: undefined,
-      endDate: undefined,
-      category: undefined,
-      locationValue: undefined,
-    };
 
   // fetching the listings
   const listings = await getListings(searchParams);
