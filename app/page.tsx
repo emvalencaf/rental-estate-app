@@ -1,5 +1,5 @@
 // actions
-import { getListings, getCurrentUser} from "./actions";
+import { getListings, getCurrentUser } from "./actions";
 
 // custom components
 import { ClientOnly, Container, EmptyState, ListingCard } from "./components";
@@ -12,8 +12,21 @@ interface HomeProps {
   searchParams: IListingsParams;
 }
 
-const Home = async ({ searchParams }: HomeProps) =>  {
-  
+const Home = async ({ searchParams }: HomeProps) => {
+
+  searchParams = searchParams ?
+    searchParams
+    : {
+      userId: undefined,
+      guestCount: undefined,
+      roomCount: undefined,
+      bathroomCount: undefined,
+      startDate: undefined,
+      endDate: undefined,
+      category: undefined,
+      locationValue: undefined,
+    };
+
   // fetching the listings
   const listings = await getListings(searchParams);
 
