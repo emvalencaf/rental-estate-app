@@ -13,7 +13,6 @@ export interface IListingsParams {
     locationValue?: string;
 }
 
-
 export default async function getListings(
     params: IListingsParams,
 ) {

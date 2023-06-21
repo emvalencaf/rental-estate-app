@@ -8,7 +8,7 @@ import { ClientOnly, Container, EmptyState, ListingCard } from "./components";
 import { IListingsParams } from "./actions/getListings";
 import { SafeListing } from "./types/SafeListing";
 
-const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic';
 
 interface HomeProps {
   searchParams: IListingsParams;
