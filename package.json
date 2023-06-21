@@ -1,11 +1,10 @@
 {
-  "name": "airbnb-app",
+  "name": "rental-real-estate-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "prisma generate",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint"
   },
